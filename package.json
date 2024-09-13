@@ -22,10 +22,11 @@
 		"minimist": ">=1.2.2",
 		"parcel-plugin-clean-easy": "^1.0.2",
 		"parcel-plugin-static-files-copy": "^2.4.3",
-		"typescript": "^3.8.3"
+		"typescript": "^3.9.10"
 	},
 	"dependencies": {
-		"phaser": "^3.55.2"
+		"main": "^1000.0.1",
+		"phaser": "^3.85.1"
 	},
 	"parcelCleanPaths": [
 		"dist"

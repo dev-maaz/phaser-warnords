@@ -1,39 +1,69 @@
-import Phaser from 'phaser'
+import Phaser from 'phaser';
+import Lane from '~/gameObjects/Lane';
+import LaneHandler from '~/gameObjects/LaneHandler';
 
-export default class HelloWorldScene extends Phaser.Scene
-{
-	constructor()
-	{
-		super('hello-world')
-	}
 
-	preload()
-    {
-        this.load.setBaseURL('http://labs.phaser.io')
+export default class HelloWorldScene extends Phaser.Scene {
 
-        this.load.image('sky', 'assets/skies/space3.png')
-        this.load.image('logo', 'assets/sprites/phaser3-logo.png')
-        this.load.image('red', 'assets/particles/red.png')
+    public cursors = this.input.keyboard?.createCursorKeys();
+
+    constructor() {
+        super('hello-world');
     }
 
-    create()
-    {
-        this.add.image(400, 300, 'sky')
+    preload() {
+        this.load.setBaseURL('../assets/')
+        this.load.image('red-arrow', 'red-arrow.png');
+    }
 
-        const particles = this.add.particles('red')
+    create() {
+        console.log( `scale-height: ${this.scale.height} scale-width: ${this.scale.width}`)
+        const laneCount = 5;
+        const laneWidth = this.scale.width;
+        const laneHeight = 100;
+        var laneColor = 0x556b2f;
 
-        const emitter = particles.createEmitter({
-            speed: 100,
-            scale: { start: 1, end: 0 },
-            blendMode: 'ADD'
-        })
+        const laneHandlerP1 = new LaneHandler(this, this.scale.width, 500, 5, 0x556b2f, 0x7fa046);
+        // for (let i = 1; i <= laneCount; i++) {
+        //     if (i == 3) laneColor = 0x7fa046;
+        //     else laneColor = 0x556b2f;
+        //     const x = this.scale.width / 2;
+        //     const y = 50 + this.scale.height - (i * laneHeight);
+        //     const lane = new Lane(this, i, laneWidth, laneHeight, x, y , laneColor);
+        //     this.lanes.push(lane);
+        // }
 
-        const logo = this.physics.add.image(400, 100, 'logo')
 
-        logo.setVelocity(100, 200)
-        logo.setBounce(1, 1)
-        logo.setCollideWorldBounds(true)
+        //pixel scale reference
+        for (let i= 0; i <= this.scale.height ; i += 50 ){
+            this.add.rectangle(10, i, 30, 10, 0x89CFF0);
+            this.add.text(30, i-7, `${i}`)
+        }
 
-        emitter.startFollow(logo)
+        // this.add.rectangle(10, 500, this.scale.width, 100, 0x89cf00);
+        this.add.image(10, 10, 'red-arrow')
+
+
+
+        const logo = this.physics.add.image(400, 100, 'logo');
+
+        logo.setVelocity(100, 200);
+        logo.setBounce(1, 1);
+        logo.setCollideWorldBounds(true);
+
+        // Keyboard controls
+        
+        
+
+
+    }
+
+    update(time: number, delta: number): void {
+
+
+        // if(Phaser.Input.Keyboard.JustDown(this.cursors?.up)){
+
+        // }
+        
     }
 }
