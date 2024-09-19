@@ -22,7 +22,7 @@ export default class HelloWorldScene extends Phaser.Scene {
 
         console.log('Preloading assets ...')
         this.load.image('red-arrow', 'red-arrow.png')
-        this.load.image('smol', '../assets/smol-aro.png')
+        this.load.image('smol', 'smol-aro.png')
     }
 
     create() {
@@ -43,10 +43,11 @@ export default class HelloWorldScene extends Phaser.Scene {
         }
 
         // this.add.rectangle(10, 500, this.scale.width, 100, 0x89cf00);
-        this.add.image(10, 10, 'red-arrow')
+        let arrow = this.add.image(10, 10, 'smol')
+        arrow.setScale(0.5)
 
         const logo = this.physics.add.image(400, 100, 'logo');
-
+        
         logo.setVelocity(100, 200);
         logo.setBounce(1, 1);
         logo.setCollideWorldBounds(true);
