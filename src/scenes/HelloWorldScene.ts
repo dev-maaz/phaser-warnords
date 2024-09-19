@@ -1,7 +1,6 @@
 import Phaser from 'phaser';
-import Lane from '~/gameObjects/Lane';
-import LaneHandler from '~/gameObjects/LaneHandler';
-
+import Lane from '../gameObjects/Lane';
+import LaneHandler from '../gameObjects/LaneHandler';
 
 export default class HelloWorldScene extends Phaser.Scene {
     
@@ -21,8 +20,9 @@ export default class HelloWorldScene extends Phaser.Scene {
 
     preload() {
 
-        this.load.setBaseURL('../assets/')
-        this.load.image('red-arrow', 'red-arrow.png');
+        console.log('Preloading assets ...')
+        this.load.image('red-arrow', 'red-arrow.png')
+        this.load.image('smol', '../assets/smol-aro.png')
     }
 
     create() {
@@ -38,7 +38,7 @@ export default class HelloWorldScene extends Phaser.Scene {
 
         //pixel scale reference
         for (let i= 0; i <= this.scale.height ; i += 50 ){
-            this.add.rectangle(10, i, 30, 10, 0x89CFF0);
+            this.add.rectangle(10, i, 20, 2, 0x89CFF0);
             this.add.text(30, i-7, `${i}`)
         }
 
